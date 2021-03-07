@@ -17,7 +17,6 @@ def arithmetic_arranger(problems,solve=False):
         for i in range(len(arr_numbers)):  # isolate operands , then delete value in array
             arr_operands.append(arr_numbers[i][1])
             arr_numbers[i].pop(1)
-        
 
         return arr_numbers,arr_operands
         
@@ -38,9 +37,6 @@ def arithmetic_arranger(problems,solve=False):
             
         return arr_dash
 
-    #["3 + 855", "3801 - 2", "45 + 43", "123 + 49"]
-    #seperate the operands and numbers into seperate arrays
-
     def determine_spaces(arr_numbers,arr_dash):
         #spit arrays in top and bottom
         #minus num[i] from len dash[i] of same index
@@ -60,7 +56,7 @@ def arithmetic_arranger(problems,solve=False):
 
         for i in range(len(arr_topnums)): #find the length of spaces in numbers
             arr_toplen.append(len(arr_dash[i]) - len(arr_topnums[i]))
-            arr_botlen.append(len(arr_dash[i]) - len(arr_botnums[i]))
+            arr_botlen.append(len(arr_dash[i]) - len(arr_botnums[i])-1) #-1 for operand taking 1 space positon
 
         for i in range(len(arr_toplen)): #convert spaces in numbers into spaces
             arr_topspaces.append(' '*arr_toplen[i])
@@ -69,13 +65,26 @@ def arithmetic_arranger(problems,solve=False):
 
         return arr_topspaces,arr_bottomspaces,arr_topnums,arr_botnums #return array of spaces for line 1 and 2
     
+    def display_output(arr_topspaces, arr_bottomspaces, arr_topnums, arr_bottomnums):
+        line1 = ''  # top numbers
+        line2 = ''  # operand and bottom numbers
+        line3 = ''  # dashes
+        line4 = ''  # total of sum
 
-     
-    line1 = '' #top numbers
-    line2 = '' #operand and bottom numbers
-    line3 = '' #dashes 
-    line4 = '' #total of sum
-    combinedline = ''
+        for i in range(len(arr_topnums)):
+            line1 = line1 +  arr_topspaces[i] +arr_topnums[i] + '    '
+            line2 = line2 + arr_operands[i]+ arr_bottomspaces[i] + arr_bottomnums[i] + '    '
+            line3 = line3 + arr_dash[i] + '    '
+
+        line1 = line1 #+ '\n'
+        line2 = line2 #+ '\n'
+        line3 = line3 #+ '\n'
+        final_output = line1 +'\n' + line2 + '\n' + line3 + '\n'
+
+        # print(line1)
+        # print(line2)
+        # print(line3)
+        print(final_output)
 
 
     '''
@@ -83,12 +92,10 @@ def arithmetic_arranger(problems,solve=False):
     Start of program
     ----------------
     '''
-    arr_numbers,arr_operands = split_input(problems)
-    print(arr_numbers)
-    print(arr_operands)
-    arr_dash = determine_dash(arr_numbers)
-    print(arr_dash)
-    arr_topspaces,arr_bottomspaces,arr_topnums,arr_bottomnums = determine_spaces(arr_numbers,arr_dash)
+    arr_numbers,arr_operands = split_input(problems) #splits the initial string for use
+    arr_dash = determine_dash(arr_numbers) #determine amount of dashes for each sum
+    arr_topspaces,arr_bottomspaces,arr_topnums,arr_bottomnums = determine_spaces(arr_numbers,arr_dash) #determine spaces infront of numbers
+    display_output(arr_topspaces, arr_bottomspaces,arr_topnums, arr_bottomnums) #display output
 
 
             
