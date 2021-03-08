@@ -107,13 +107,18 @@ def arithmetic_arranger(problems, solve=False):
         line3 = ''  # dashes
         line4 = ''  # total of sum
 
-        for i in range(len(arr_topnums)):
+        for i in range(len(arr_topnums)-1):
             line1 = line1 + arr_topspaces[i] + arr_topnums[i] + '    '
-            line2 = line2 + \
-                arr_operands[i] + arr_bottomspaces[i] + \
-                arr_bottomnums[i] + '    '
+            line2 = line2 + arr_operands[i] + arr_bottomspaces[i] + arr_bottomnums[i] + '    '
             line3 = line3 + arr_dash[i] + '    '
             line4 = line4 + arr_sumspaces[i] + arr_sum[i] + '    '
+        
+        line1 = line1 + arr_topspaces[len(arr_topnums)-1] + arr_topnums[len(arr_topnums)-1]
+        line2 = line2 + arr_operands[len(arr_topnums)-1] + arr_bottomspaces[len(arr_topnums)-1] + arr_bottomnums[len(arr_topnums)-1]
+        line3 = line3 + arr_dash[len(arr_topnums)-1]
+        line4 = line4 + arr_sumspaces[len(arr_topnums)-1] + arr_sum[len(arr_topnums)-1]
+
+
 
         line1 = line1  # + '\n''
         line2 = line2  # + '\n'
@@ -128,7 +133,7 @@ def arithmetic_arranger(problems, solve=False):
 
     '''
     ----------------
-    Start of program
+    Start of run sequence
     ----------------
     '''
 
